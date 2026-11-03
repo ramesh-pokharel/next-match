@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/nav/NavBar";
 import { Toast } from "@heroui/react";
+import { Suspense } from "react";
 
 
 
@@ -18,7 +19,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en">
       <body className="bg-background text-foreground">
           <Toast.Provider />
-          <NavBar />
+          <Suspense fallback={<div className="h-20" />}>
+            <NavBar />
+          </Suspense>
           <main className="container mx-auto mt-24">
             {children}
           </main>

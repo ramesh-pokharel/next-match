@@ -18,7 +18,7 @@ const UserMenu = ({user}:Props) => {
             fetchOptions: {
                 onSuccess: () => {
                     router.push("/");
-                    // router.refresh();
+                    router.refresh();
                 }
             }
         })

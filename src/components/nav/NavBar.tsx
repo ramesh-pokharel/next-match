@@ -16,7 +16,7 @@ const navLinks = [
 
 const NavBar = async () => {
 
-  // const user = await getCurrentUser();
+  const user = await getCurrentUser();
 
   return (
     <header className="p-3 w-full fixed top-0 z-50 bg-linear-to-r from-accent/85 to-black">
