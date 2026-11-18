@@ -39,7 +39,7 @@ const UserMenu = ({user}:Props) => {
                     </Dropdown.Item>
                    
                     <Dropdown.Item
-                    onClick={signOut}
+                    onAction={signOut}
                     id="logout" 
                     textValue="Logout"
                      variant="danger">

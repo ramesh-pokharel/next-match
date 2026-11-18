@@ -20,7 +20,7 @@ const NavBar = async () => {
 
   return (
     <header className="p-3 w-full fixed top-0 z-50 bg-linear-to-r from-accent/85 to-black">
-      <div className="flex justify-between item-center px-10 mx-auto gap-6">
+      <div className="flex justify-between items-center px-10 mx-auto gap-6">
         <Link href="/" className="flex items-center fap-2">
           <GiMatchTip size={40} className="text-gray-200" />
           <div className="font-bold text-3xl flex">

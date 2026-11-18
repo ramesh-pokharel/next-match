@@ -46,6 +46,7 @@ const RegisterForm = () => {
         }, {
             onSuccess: () => {
                 router.push("/members")
+                router.refresh()
             },
             onError: (ctx) => {
                 toast.danger(ctx.error.message);
@@ -90,9 +91,9 @@ const RegisterForm = () => {
                         id="email"
                         className="pl-10"
                         {...register("email", {
-                            required: "Email is requierd",
+                            required: "Email is required",
                             pattern: {
-                                value: /^[^\s@]+@[^\s@]+.[^\s@]+$/,
+                                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
                                 message: "Enter a valid email address",
                             }
 

@@ -12,10 +12,10 @@ const MemberCard = ({member}: Props) => {
     <Link href={`/members/${member.userId}`}>
         <Card className="p-0 transition-all duration-300 hover:scale-105 hover:shadow-xl">
             <Image 
-                alt="{member.name}"
+                alt={member.name}
                 width={500}
                 height={500}
-                sizes="(max-width: 768px) 110vw 33vw"
+                sizes="(max-width: 768px) 110vw, 33vw"
                 loading="eager"
                 src={member?.image || '/images/user.png'}
                 className="aspect-square object-cover relative"

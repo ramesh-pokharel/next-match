@@ -1,10 +1,24 @@
 import { getMemberByUserId } from "@/server/actions/members";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 
 
-async function MemberDetailedPage(props: PageProps<"/members/[userId]">) {
+function MemberDetailedPage(props: PageProps<"/members/[userId]">) {
 
-    const {userId} = await props.params;
+   return(
+    <Suspense fallback={<div className="p-10 animate-pulse">Loading member...</div>}>
+      <MemberDetails params={props.params} />
+    </Suspense>
+   )
+}
+
+
+async function MemberDetails({
+  params,
+}: {
+  params: PageProps<"/members/[userId]">["params"];
+}){
+   const {userId} = await params;
     const member = await getMemberByUserId(userId);
 
     if(!member) return notFound();
@@ -14,4 +28,5 @@ async function MemberDetailedPage(props: PageProps<"/members/[userId]">) {
     <div>{member.name}</div>
   )
 }
+
 export default MemberDetailedPage

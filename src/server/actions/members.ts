@@ -8,14 +8,9 @@ export async function getMembers(){
     if(!currentUser) return null;
 
     try{
-        return 
-         
-         prisma.member.findMany({
+        return  prisma.member.findMany({
             where: {NOT: {userId: currentUser.id,}},
-        }
-    
-        
-       
+        }      
         ); //await will be redundant here
         
     
