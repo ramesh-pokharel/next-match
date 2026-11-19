@@ -4,7 +4,7 @@
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation"
 
-const sections = [
+export const sections = [
     {name: "Profile", path: "", segment: null},
     {name: "Photos", path: "/photos", segment: "photos"},
     {name: "Chat", path: "/chat", segment: "chat"},
@@ -16,15 +16,15 @@ const MemberNav = ({userId}: {userId: string}) => {
     const base = `/members/${userId}`;
   return (
     <nav className="flex flex-col p-4 ml-4 text-2xl gap-4">
-        {sections.map(({name, path, segment}) => {
+        {sections.map(({name, path, segment}) => (
             <Link
             key={name}
             href={`${base}${path}`}
-            className={`block rounded ${active===segment} ? 'text-accent': 'hover:text-accent/50'`}
+            className={`block rounded ${active===segment ? 'text-accent': 'hover:text-accent/50'}`}
             >
                 {name}
             </Link>
-        })}
+        ))}
 
     </nav>
   )

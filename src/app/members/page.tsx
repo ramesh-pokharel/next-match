@@ -3,6 +3,7 @@
 import { getMembers } from "@/server/actions/members";
 import MemberCard from "./MemberCard";
 import { Suspense } from "react";
+import Loading from "./[userId]/loading";
 
 
 
@@ -11,7 +12,7 @@ const MembersPage =  () => {
 
   return (
    
-    <Suspense fallback={<p className="p-10">Loading members...</p>}>
+    <Suspense fallback={<Loading />}>
       <MembersList />
     </Suspense>
   
