@@ -29,7 +29,7 @@ export async function toggleLikeMember(targetUserId: string, isLiked?: boolean){
             })
         }
         revalidatePath("/members");
-        revalidatePath(`/members/{targetUserId}`);
+        revalidatePath(`/members/${targetUserId}`);
     }catch(e){
         console.log(e);
     }

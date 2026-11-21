@@ -10,22 +10,22 @@ export async function getMembers(){
 
     try{
         
-        return  prisma.member.findMany({
+        return await prisma.member.findMany({
             where: {NOT: {userId: currentUser.id,}},
         }      
-        ); //await will be redundant here
+        ); 
         
  
     }catch(e){
         console.log(e);
-        
+        return null;
     }
 }
 
-export  const getMemberByUserId = cache((userId: string) => {
+export  const getMemberByUserId = cache(async(userId: string) => {
     try{
 
-        return prisma.member.findUnique({where: {userId}})
+        return await prisma.member.findUnique({where: {userId}})
     }catch(e){
         console.log(e);
        
