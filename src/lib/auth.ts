@@ -20,3 +20,13 @@ export async function getCurrentUser() {
     });
     return session?.user;
 }
+
+export async function requiredAuthUser() {
+    const session = await auth.api.getSession({
+        headers: await headers()
+    });
+    if(!session)throw new Error("Unauthorized");
+    
+    return session?.user;
+}
+

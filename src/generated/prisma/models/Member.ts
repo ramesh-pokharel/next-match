@@ -232,6 +232,8 @@ export type MemberWhereInput = {
   image?: Prisma.StringNullableFilter<"Member"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   photos?: Prisma.PhotoListRelationFilter
+  sourceLikes?: Prisma.LikeListRelationFilter
+  targetLikes?: Prisma.LikeListRelationFilter
 }
 
 export type MemberOrderByWithRelationInput = {
@@ -248,6 +250,8 @@ export type MemberOrderByWithRelationInput = {
   image?: Prisma.SortOrderInput | Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   photos?: Prisma.PhotoOrderByRelationAggregateInput
+  sourceLikes?: Prisma.LikeOrderByRelationAggregateInput
+  targetLikes?: Prisma.LikeOrderByRelationAggregateInput
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
@@ -267,6 +271,8 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   image?: Prisma.StringNullableFilter<"Member"> | string | null
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   photos?: Prisma.PhotoListRelationFilter
+  sourceLikes?: Prisma.LikeListRelationFilter
+  targetLikes?: Prisma.LikeListRelationFilter
 }, "id" | "userId">
 
 export type MemberOrderByWithAggregationInput = {
@@ -316,6 +322,8 @@ export type MemberCreateInput = {
   image?: string | null
   user: Prisma.UserCreateNestedOneWithoutMemberInput
   photos?: Prisma.PhotoCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberUncheckedCreateInput = {
@@ -331,6 +339,8 @@ export type MemberUncheckedCreateInput = {
   country: string
   image?: string | null
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberUpdateInput = {
@@ -346,6 +356,8 @@ export type MemberUpdateInput = {
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutMemberNestedInput
   photos?: Prisma.PhotoUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUpdateManyWithoutTargetMemberNestedInput
 }
 
 export type MemberUncheckedUpdateInput = {
@@ -361,6 +373,8 @@ export type MemberUncheckedUpdateInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUncheckedUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUncheckedUpdateManyWithoutTargetMemberNestedInput
 }
 
 export type MemberCreateManyInput = {
@@ -502,6 +516,34 @@ export type MemberUpdateOneRequiredWithoutPhotosNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutPhotosInput, Prisma.MemberUpdateWithoutPhotosInput>, Prisma.MemberUncheckedUpdateWithoutPhotosInput>
 }
 
+export type MemberCreateNestedOneWithoutSourceLikesInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutSourceLikesInput, Prisma.MemberUncheckedCreateWithoutSourceLikesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutSourceLikesInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberCreateNestedOneWithoutTargetLikesInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutTargetLikesInput, Prisma.MemberUncheckedCreateWithoutTargetLikesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutTargetLikesInput
+  connect?: Prisma.MemberWhereUniqueInput
+}
+
+export type MemberUpdateOneRequiredWithoutSourceLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutSourceLikesInput, Prisma.MemberUncheckedCreateWithoutSourceLikesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutSourceLikesInput
+  upsert?: Prisma.MemberUpsertWithoutSourceLikesInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutSourceLikesInput, Prisma.MemberUpdateWithoutSourceLikesInput>, Prisma.MemberUncheckedUpdateWithoutSourceLikesInput>
+}
+
+export type MemberUpdateOneRequiredWithoutTargetLikesNestedInput = {
+  create?: Prisma.XOR<Prisma.MemberCreateWithoutTargetLikesInput, Prisma.MemberUncheckedCreateWithoutTargetLikesInput>
+  connectOrCreate?: Prisma.MemberCreateOrConnectWithoutTargetLikesInput
+  upsert?: Prisma.MemberUpsertWithoutTargetLikesInput
+  connect?: Prisma.MemberWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.MemberUpdateToOneWithWhereWithoutTargetLikesInput, Prisma.MemberUpdateWithoutTargetLikesInput>, Prisma.MemberUncheckedUpdateWithoutTargetLikesInput>
+}
+
 export type MemberCreateWithoutUserInput = {
   id?: string
   name: string
@@ -514,6 +556,8 @@ export type MemberCreateWithoutUserInput = {
   country: string
   image?: string | null
   photos?: Prisma.PhotoCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberUncheckedCreateWithoutUserInput = {
@@ -528,6 +572,8 @@ export type MemberUncheckedCreateWithoutUserInput = {
   country: string
   image?: string | null
   photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberCreateOrConnectWithoutUserInput = {
@@ -558,6 +604,8 @@ export type MemberUpdateWithoutUserInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photos?: Prisma.PhotoUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUpdateManyWithoutTargetMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutUserInput = {
@@ -572,6 +620,8 @@ export type MemberUncheckedUpdateWithoutUserInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   photos?: Prisma.PhotoUncheckedUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUncheckedUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUncheckedUpdateManyWithoutTargetMemberNestedInput
 }
 
 export type MemberCreateWithoutPhotosInput = {
@@ -586,6 +636,8 @@ export type MemberCreateWithoutPhotosInput = {
   country: string
   image?: string | null
   user: Prisma.UserCreateNestedOneWithoutMemberInput
+  sourceLikes?: Prisma.LikeCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberUncheckedCreateWithoutPhotosInput = {
@@ -600,6 +652,8 @@ export type MemberUncheckedCreateWithoutPhotosInput = {
   city: string
   country: string
   image?: string | null
+  sourceLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutSourceMemberInput
+  targetLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutTargetMemberInput
 }
 
 export type MemberCreateOrConnectWithoutPhotosInput = {
@@ -630,6 +684,8 @@ export type MemberUpdateWithoutPhotosInput = {
   country?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   user?: Prisma.UserUpdateOneRequiredWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUpdateManyWithoutTargetMemberNestedInput
 }
 
 export type MemberUncheckedUpdateWithoutPhotosInput = {
@@ -644,6 +700,168 @@ export type MemberUncheckedUpdateWithoutPhotosInput = {
   city?: Prisma.StringFieldUpdateOperationsInput | string
   country?: Prisma.StringFieldUpdateOperationsInput | string
   image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  sourceLikes?: Prisma.LikeUncheckedUpdateManyWithoutSourceMemberNestedInput
+  targetLikes?: Prisma.LikeUncheckedUpdateManyWithoutTargetMemberNestedInput
+}
+
+export type MemberCreateWithoutSourceLikesInput = {
+  id?: string
+  name: string
+  gender: string
+  dateOfBirth: Date | string
+  created?: Date | string
+  updated?: Date | string
+  description: string
+  city: string
+  country: string
+  image?: string | null
+  user: Prisma.UserCreateNestedOneWithoutMemberInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutMemberInput
+  targetLikes?: Prisma.LikeCreateNestedManyWithoutTargetMemberInput
+}
+
+export type MemberUncheckedCreateWithoutSourceLikesInput = {
+  id?: string
+  userId: string
+  name: string
+  gender: string
+  dateOfBirth: Date | string
+  created?: Date | string
+  updated?: Date | string
+  description: string
+  city: string
+  country: string
+  image?: string | null
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutMemberInput
+  targetLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutTargetMemberInput
+}
+
+export type MemberCreateOrConnectWithoutSourceLikesInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutSourceLikesInput, Prisma.MemberUncheckedCreateWithoutSourceLikesInput>
+}
+
+export type MemberCreateWithoutTargetLikesInput = {
+  id?: string
+  name: string
+  gender: string
+  dateOfBirth: Date | string
+  created?: Date | string
+  updated?: Date | string
+  description: string
+  city: string
+  country: string
+  image?: string | null
+  user: Prisma.UserCreateNestedOneWithoutMemberInput
+  photos?: Prisma.PhotoCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeCreateNestedManyWithoutSourceMemberInput
+}
+
+export type MemberUncheckedCreateWithoutTargetLikesInput = {
+  id?: string
+  userId: string
+  name: string
+  gender: string
+  dateOfBirth: Date | string
+  created?: Date | string
+  updated?: Date | string
+  description: string
+  city: string
+  country: string
+  image?: string | null
+  photos?: Prisma.PhotoUncheckedCreateNestedManyWithoutMemberInput
+  sourceLikes?: Prisma.LikeUncheckedCreateNestedManyWithoutSourceMemberInput
+}
+
+export type MemberCreateOrConnectWithoutTargetLikesInput = {
+  where: Prisma.MemberWhereUniqueInput
+  create: Prisma.XOR<Prisma.MemberCreateWithoutTargetLikesInput, Prisma.MemberUncheckedCreateWithoutTargetLikesInput>
+}
+
+export type MemberUpsertWithoutSourceLikesInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutSourceLikesInput, Prisma.MemberUncheckedUpdateWithoutSourceLikesInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutSourceLikesInput, Prisma.MemberUncheckedCreateWithoutSourceLikesInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutSourceLikesInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutSourceLikesInput, Prisma.MemberUncheckedUpdateWithoutSourceLikesInput>
+}
+
+export type MemberUpdateWithoutSourceLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutMemberNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutMemberNestedInput
+  targetLikes?: Prisma.LikeUpdateManyWithoutTargetMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutSourceLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutMemberNestedInput
+  targetLikes?: Prisma.LikeUncheckedUpdateManyWithoutTargetMemberNestedInput
+}
+
+export type MemberUpsertWithoutTargetLikesInput = {
+  update: Prisma.XOR<Prisma.MemberUpdateWithoutTargetLikesInput, Prisma.MemberUncheckedUpdateWithoutTargetLikesInput>
+  create: Prisma.XOR<Prisma.MemberCreateWithoutTargetLikesInput, Prisma.MemberUncheckedCreateWithoutTargetLikesInput>
+  where?: Prisma.MemberWhereInput
+}
+
+export type MemberUpdateToOneWithWhereWithoutTargetLikesInput = {
+  where?: Prisma.MemberWhereInput
+  data: Prisma.XOR<Prisma.MemberUpdateWithoutTargetLikesInput, Prisma.MemberUncheckedUpdateWithoutTargetLikesInput>
+}
+
+export type MemberUpdateWithoutTargetLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  user?: Prisma.UserUpdateOneRequiredWithoutMemberNestedInput
+  photos?: Prisma.PhotoUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUpdateManyWithoutSourceMemberNestedInput
+}
+
+export type MemberUncheckedUpdateWithoutTargetLikesInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  name?: Prisma.StringFieldUpdateOperationsInput | string
+  gender?: Prisma.StringFieldUpdateOperationsInput | string
+  dateOfBirth?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  created?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updated?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  description?: Prisma.StringFieldUpdateOperationsInput | string
+  city?: Prisma.StringFieldUpdateOperationsInput | string
+  country?: Prisma.StringFieldUpdateOperationsInput | string
+  image?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  photos?: Prisma.PhotoUncheckedUpdateManyWithoutMemberNestedInput
+  sourceLikes?: Prisma.LikeUncheckedUpdateManyWithoutSourceMemberNestedInput
 }
 
 
@@ -653,10 +871,14 @@ export type MemberUncheckedUpdateWithoutPhotosInput = {
 
 export type MemberCountOutputType = {
   photos: number
+  sourceLikes: number
+  targetLikes: number
 }
 
 export type MemberCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   photos?: boolean | MemberCountOutputTypeCountPhotosArgs
+  sourceLikes?: boolean | MemberCountOutputTypeCountSourceLikesArgs
+  targetLikes?: boolean | MemberCountOutputTypeCountTargetLikesArgs
 }
 
 /**
@@ -676,6 +898,20 @@ export type MemberCountOutputTypeCountPhotosArgs<ExtArgs extends runtime.Types.E
   where?: Prisma.PhotoWhereInput
 }
 
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountSourceLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LikeWhereInput
+}
+
+/**
+ * MemberCountOutputType without action
+ */
+export type MemberCountOutputTypeCountTargetLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.LikeWhereInput
+}
+
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
@@ -691,6 +927,8 @@ export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   image?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   photos?: boolean | Prisma.Member$photosArgs<ExtArgs>
+  sourceLikes?: boolean | Prisma.Member$sourceLikesArgs<ExtArgs>
+  targetLikes?: boolean | Prisma.Member$targetLikesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["member"]>
 
@@ -742,6 +980,8 @@ export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
 export type MemberInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   photos?: boolean | Prisma.Member$photosArgs<ExtArgs>
+  sourceLikes?: boolean | Prisma.Member$sourceLikesArgs<ExtArgs>
+  targetLikes?: boolean | Prisma.Member$targetLikesArgs<ExtArgs>
   _count?: boolean | Prisma.MemberCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type MemberIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
@@ -756,6 +996,8 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     photos: Prisma.$PhotoPayload<ExtArgs>[]
+    sourceLikes: Prisma.$LikePayload<ExtArgs>[]
+    targetLikes: Prisma.$LikePayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -1165,6 +1407,8 @@ export interface Prisma__MemberClient<T, Null = never, ExtArgs extends runtime.T
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   photos<T extends Prisma.Member$photosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$photosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PhotoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  sourceLikes<T extends Prisma.Member$sourceLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$sourceLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  targetLikes<T extends Prisma.Member$targetLikesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Member$targetLikesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$LikePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1627,6 +1871,54 @@ export type Member$photosArgs<ExtArgs extends runtime.Types.Extensions.InternalA
   take?: number
   skip?: number
   distinct?: Prisma.PhotoScalarFieldEnum | Prisma.PhotoScalarFieldEnum[]
+}
+
+/**
+ * Member.sourceLikes
+ */
+export type Member$sourceLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Like
+   */
+  select?: Prisma.LikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Like
+   */
+  omit?: Prisma.LikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LikeInclude<ExtArgs> | null
+  where?: Prisma.LikeWhereInput
+  orderBy?: Prisma.LikeOrderByWithRelationInput | Prisma.LikeOrderByWithRelationInput[]
+  cursor?: Prisma.LikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikeScalarFieldEnum | Prisma.LikeScalarFieldEnum[]
+}
+
+/**
+ * Member.targetLikes
+ */
+export type Member$targetLikesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Like
+   */
+  select?: Prisma.LikeSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Like
+   */
+  omit?: Prisma.LikeOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.LikeInclude<ExtArgs> | null
+  where?: Prisma.LikeWhereInput
+  orderBy?: Prisma.LikeOrderByWithRelationInput | Prisma.LikeOrderByWithRelationInput[]
+  cursor?: Prisma.LikeWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.LikeScalarFieldEnum | Prisma.LikeScalarFieldEnum[]
 }
 
 /**

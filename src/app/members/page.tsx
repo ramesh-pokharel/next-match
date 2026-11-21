@@ -4,6 +4,7 @@ import { getMembers } from "@/server/actions/members";
 import MemberCard from "./MemberCard";
 import { Suspense } from "react";
 import Loading from "./[userId]/loading";
+import { fetchCurrentUserLikeIds } from "@/server/actions/likes";
 
 
 
@@ -21,10 +22,11 @@ const MembersPage =  () => {
 
 async function MembersList(){
   const members = await getMembers()
+  const likeIds = await fetchCurrentUserLikeIds();
   return (
       <div className="p-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6">
        {members?.map(member => (
-          <MemberCard key={member.id} member={member} />
+          <MemberCard key={member.id} member={member} likeIds = {likeIds} />
         ) )}
      </div>  
   );

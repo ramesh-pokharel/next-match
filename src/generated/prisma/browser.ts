@@ -47,3 +47,8 @@ export type Member = Prisma.MemberModel
  * 
  */
 export type Photo = Prisma.PhotoModel
+/**
+ * Model Like
+ * 
+ */
+export type Like = Prisma.LikeModel
