@@ -8,6 +8,13 @@ import { Suspense } from "react"
 import MemberNav from "./MemberNav";
 import SectionTitle from "./SectionTitle";
 import Loading from "./loading";
+import { getCurrentUser } from "@/lib/auth";
+
+export const sections = [
+    {name: "Profile", path: "", segment: null},
+    {name: "Photos", path: "/photos", segment: "photos"},
+    {name: "Chat", path: "/chat", segment: "chat"},
+]
 
 const Layout = ({ children, params }: LayoutProps<"/members/[userId]">) => {
 
@@ -31,7 +38,7 @@ const Layout = ({ children, params }: LayoutProps<"/members/[userId]">) => {
                 <Card className="w-full mt-6 h-[80vh]">
                     <Card.Header>
                         <Suspense fallback={<Loading />}>
-                            <SectionTitle />
+                            <SectionTitle  sections={sections}/>
                         </Suspense>
                     </Card.Header>
                     <Separator />
@@ -47,6 +54,9 @@ const Layout = ({ children, params }: LayoutProps<"/members/[userId]">) => {
 async function MemberSidebar({ params }: { params: Promise<{ userId: string }> }) {
     const { userId } = await params;
     const member = await getMemberByUserId(userId);
+    const currentUser = await getCurrentUser();
+    const isCurrentUser = currentUser?.id === userId;
+
     if (!member) return notFound();
 
     return (
@@ -70,7 +80,10 @@ async function MemberSidebar({ params }: { params: Promise<{ userId: string }> }
                     </div>
                 </div>
                 <Separator />
-                <MemberNav userId={member.userId} />
+                <MemberNav 
+                userId={member.userId}
+                sections={isCurrentUser ? sections.filter(x => x.segment !== "chat") : sections}
+                />
             </Card.Content>
         </>
     );

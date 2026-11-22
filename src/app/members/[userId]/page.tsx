@@ -2,6 +2,8 @@ import { getMemberByUserId } from "@/server/actions/members";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { getCurrentUser } from "@/lib/auth";
+import ProfileForm from "./ProfileForm";
 
 
 function MemberDetailedPage(props: PageProps<"/members/[userId]">) {
@@ -21,12 +23,19 @@ async function MemberDetails({
 }) {
   const { userId } = await params;
   const member = await getMemberByUserId(userId);
+  const user = await getCurrentUser();
 
   if (!member) return notFound();
-
+const isCurrentuser = member.userId === user?.id;
 
   return (
-    <div>{member.description}</div>
+    <div>
+      {isCurrentuser ? (
+        <ProfileForm  member={member}/>
+        ):(
+          <div>{member.description}</div>
+        )}
+    </div>
   )
 }
 

@@ -1,9 +1,14 @@
 "use client"
 
 import { useSelectedLayoutSegment } from "next/navigation"
-import { sections } from "./MemberNav";
 
-const SectionTitle = () => {
+type Props = {
+  sections: {segment: string | null, name: string, path: string}[];
+  
+}
+
+
+const SectionTitle = ({sections}: Props) => {
     const active = useSelectedLayoutSegment();
     const title = sections.find(x => x.segment=== active)?.name ?? "";
   return (
